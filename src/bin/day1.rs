@@ -1,10 +1,6 @@
+use advent_of_code_2023::file_io::lines_from_file;
 use phf::phf_map;
-use std::{
-    env,
-    fs::File,
-    io::{prelude::*, BufReader},
-    path::Path,
-};
+use std::{env, path::Path};
 
 static DIGIT_WORDS: phf::Map<&str, char> = phf_map! {
     "one"=>'1',
@@ -108,12 +104,4 @@ fn process_backward(line: &String) -> Option<char> {
         }
     }
     None
-}
-
-fn lines_from_file(filename: impl AsRef<Path>) -> Vec<String> {
-    let file = File::open(filename).expect("no such file");
-    let buf = BufReader::new(file);
-    buf.lines()
-        .map(|l| l.expect("Could not parse line"))
-        .collect()
 }
